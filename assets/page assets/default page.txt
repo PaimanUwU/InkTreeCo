@@ -1,0 +1,39 @@
+<?php
+$pageTitle = "";
+$showSidebar = true;
+$showNavBar = true;
+$showFooter = true;
+$contentFlexDirection = "column";
+
+$currentPage = ".php";
+
+include '../php/session_Maker.php';
+
+ob_start();
+
+?>
+<!--------------------------------------------CSS-------------------------------------------->
+
+
+<?php
+$pageCSS = ob_get_clean();
+
+ob_start();
+?>
+<!------------------------------------------Content------------------------------------------>
+
+
+<?php
+$pageContents = ob_get_clean();
+
+ob_start();
+?>
+
+<!------------------------------------------Script------------------------------------------->
+
+
+<?php
+$pageScript = ob_get_clean();
+
+include '../layout/admin.php';
+?>

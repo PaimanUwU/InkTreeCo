@@ -1,0 +1,607 @@
+:root {
+    --background-default: #ffffff;
+    --background-light: #edf1fa;
+    --clr-dark: #404040;
+    --clr-primary: #d2e0fb;
+    --clr-primary-darken: #b1c5ec;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-decoration: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--clr-dark);   
+    box-sizing: border-box; /* Ensure padding and border are included in element's total width and height */
+}
+
+.searchTogglebutton svg,
+.accountbutton svg,
+.menubutton svg,
+.backbutton svg {
+    height: 34px;
+    width: 34px;
+}
+
+html, body {
+    min-height: 100vh;
+    max-width: 100vw;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+.nav {
+    background-color: var(--clr-primary);
+    height: 3em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 989;
+    transition: all 0.3s ease;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1em 1em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.headerright,
+.headerleft {
+    height: 100%;
+    gap: 1em;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    max-width: 7em;
+    width: 100%;
+    height: auto;
+    padding: 0 0.5em;
+}
+
+.logobuttonMiddle {
+    display: none; /* Ensure it's visible for centering */
+    width: auto; /* Allow it to size based on content */
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.headerContainer{
+    min-width: 5em;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.headerContainer h2{
+    padding: 0.25em 0.5em;
+    background-color: var(--clr-primary);
+    border-style: solid;
+    border-width: 2px;
+    border-color: #404040;
+    border-radius: 50px;
+}
+
+.sectionControlled {
+    width: 100%;
+    gap: 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.sectionControlledContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.redirectText {
+    position: absolute;
+    justify-self: center;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.redirectText ul {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    height: 100%;
+}
+
+.redirectText li {
+    height: 100%;
+    padding: 0 20px;
+    font-size: 12pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.redirectText a {
+    height: 100%;
+    text-decoration: none;
+    color: var(--clr-dark);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchTogglebutton,
+.backbutton,
+.accountbutton, 
+.historyButton, 
+.createButton,
+.loginButton {
+    margin: 0.5em 0.5em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menubutton,.backbutton {
+    margin: 0.5em 0.5em;
+    height: 100%;    
+    align-items: center;
+    justify-content: center;
+}
+
+.backbutton, .historyButton, .createButton {
+    display: none;
+}
+
+.actionButtonContainer {
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#searchInputBox {
+    height: 26px;
+    max-width: 400px;
+    border-radius: 5px;
+    border-color: var(--clr-dark);
+    border-style: dashed;
+    background-color: var(--background-light);
+    padding: 0 10px;
+}
+
+.searchInputBox:active {
+    background-color: var(--clr-primary-darken);
+}
+
+.contents {
+    width: 100%; /* Ensure content takes the full width */
+    height: 100%;
+    display: flex;
+    margin-top: 4rem;
+    padding: 0 10em;
+    overflow-y: hidden; /* Prevent content overflow */
+}
+
+.sidebar {
+    width: 100%;
+    background-color: var(--clr-primary);
+    display: flex;
+    flex-direction: column;
+    padding: 1.1em 0.8em;
+    border-radius: 1em;
+    z-index: 3;
+}
+
+.sidebarContainer {
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 979;
+}
+
+.sidebarSlideout h2 {
+    margin-bottom: 0.5em;
+}
+
+.sidebarSlideout h2 {
+    margin-bottom: 0.5em;
+}
+
+.sidebarSlideout ul {
+    display: flex;
+    flex-direction: column;
+    text-decoration: underline;
+    gap: 0.5em;
+}
+
+.sidebar ul {
+    display: flex;
+    flex-direction: column;
+    text-decoration: underline;
+    gap: 0.5em;
+}
+
+.sidebarItem {
+    padding: 0.3em 0.5em;
+}      
+
+.searchContainer {
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 998;
+}
+
+.searchBoxControlled {
+    background-color: var(--clr-primary);
+    height: 95vh;
+    width: 70vw; /* Ensure it's within viewport limits */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto auto;
+    padding: 1em 1em;
+    z-index: 999;
+    border-radius: 1em;
+}
+
+.searchBoxNav {
+    width: 105%;
+    display: flex;
+    padding: 1.5em 4em;
+    justify-content: flex-start;
+}
+
+.searchBoxNav a {
+    display: flex;
+    align-items: center;
+    color: var(--clr-dark);
+}
+
+.searchBoxContainer {
+    margin: 1.5em 0;
+    width: 100%;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+}
+
+#searchForm {
+    width: 90%;
+    height: 150%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchBoxContainer #bigSearchInputBox {
+    width: 100%;
+    height: 100%;
+    margin: 0 0.5em;
+    border-radius: 1em;
+    border-color: var(--clr-dark);
+    border-style: dashed;
+    background-color: var(--background-light);
+    padding: 0.25em 0.5em;
+    font-size: 1rem;
+}
+
+.searchBoxSaperator {
+    width: 105%;
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    padding: 1.5em 4em;
+}
+
+
+.searchResult {
+    display: flex;
+    flex-direction: column;
+    margin: 1.5em 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.searchResult ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+    transition: all 0.3s ease;
+}
+
+.searchResult li {
+    width: 100%; /* Ensure list items take full width */
+    height: 5em;
+    border-radius: 5px;
+    padding: 0.5em 2em;
+    background-color: var(--clr-primary-darken);
+}
+
+.searchResult ul :hover {
+    background-color: #c2a176;
+    border-radius: 5px;
+}
+
+.searchResultContentContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.searchResultTitle {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+.searchResultTitle h1 {
+    display: flex;
+    text-decoration: none;
+    overflow-x: hidden;
+}
+
+.searchResultTitle img {
+    width: auto;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.searchResultCallforAction {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-decoration: none;
+}
+
+.footer {
+    width: 100%;
+    height: auto;
+    background-color: var(--clr-primary);
+    display: flex;
+    flex-direction: column;
+    padding: 2em 2em;
+    color: var(--clr-dark);
+    gap: 3em;
+}
+
+.footerContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.footerLogo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.4em;
+}
+
+.footerLogo img {
+    width: 15em;
+    height: auto;
+    border-radius: 5px;
+}
+
+.footerText {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 20em;
+    gap: 1em;
+}
+
+.footerLinks {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em;
+}
+
+.footerLinks a {
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+    color: var(--clr-dark);
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ffffff;
+    background-color: #ffffff;
+    border-radius: 1em; 
+    padding: 0.5em 1em;
+    transition: all 0.3s ease;
+}
+
+.footerLinks a:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+}
+
+.footerBottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+
+
+
+@media (max-width: 643px) {
+}
+
+@media (max-width: 702px) {
+    .searchResultCallforAction {
+        display: none;
+    }
+    
+    .searchResultTitle {
+        width: 100%;
+    }
+
+    .searchBoxSaperator {
+        display: none;
+    }
+
+    .searchBoxNav {
+        display: flex;
+        justify-content: center;
+        height: 2em;
+        width: 2em;
+    }
+
+    .searchBoxNav h3 {
+        display: none;
+    }
+
+    .historyButton, .createButton {
+        display: flex;
+    }
+    
+    #footerResponsive {
+        width: 100%;
+        gap: 2em;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .contents {
+        padding: 0 0;
+    }
+}
+
+@media (max-width: 768px) {
+    * {
+        font-size: 0.7rem;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+    
+    h2 {
+        font-size: 1rem;
+    }
+    
+    h3 {
+        font-size: 0.8rem;
+    }
+
+}
+
+@media (max-width: 899px) {    
+    .contents {
+        padding-top: 3em;
+    }
+
+    * {
+        font-size: 0.9rem;
+    }
+
+    .redirectText ul {
+        gap: 0.5em;
+    }
+
+    .cartButton svg,
+    .searchTogglebutton svg,
+    .accountbutton svg,
+    .menubutton svg,
+    .backbutton svg,
+    .historyButton svg,
+    .createButton svg {
+        height: 24px; /* Adjust size as needed */
+        width: 24px;  /* Adjust size as needed */
+    }
+}
+
+@media (max-width: 975px) {
+
+}
+
+@media (min-width: 976px) {
+    .historyButton, .createButton {
+        display: none;
+    }
+
+    .actionButtonContainer {
+        display: none;
+    }
+
+    .sidebarContainer {
+        display: none;
+    }
+
+    .tagsSidebar {
+        display: none;
+    }
+
+    .rightColumn {
+        width: calc(100% - 18rem); /* Adjust width to accommodate the sidebar and its margin */
+    }
+}
+
+/* Scroll animation */
+.nav.scrolled {
+    width: calc(100% - 15px);
+    margin-top: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 1em;
+}
+
+.sidebar.scrolled {
+    margin-top: 5em;
+}
