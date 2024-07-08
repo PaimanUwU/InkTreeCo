@@ -4,6 +4,7 @@ $showSidebar = true;
 $showNavBar = true;
 $showFooter = true;
 $contentFlexDirection = "column";
+$contentPadding = "10em";
 
 $currentPage = ".php";
 
@@ -21,7 +22,23 @@ $pageCSS = ob_get_clean();
 ob_start();
 ?>
 <!------------------------------------------Content------------------------------------------>
+<div class="sectionControlled">
+    <div class="sectionControlledContent">
+        <div class="headerContainer"><h2>Goals</h2></div>
 
+    </div>
+    <div class="sectionControlledContent">
+        <div class="headerContainer"><h2>Contributions</h2></div>
+
+    </div>
+</div>
+<!--discover-->
+<div class="sectionControlled">
+    <div class="sectionControlledContent">    
+        <div class="headerContainer"><h2>Promotions</h2></div>
+        
+    </div>
+</div>
 
 <?php
 $pageContents = ob_get_clean();
@@ -35,5 +52,5 @@ ob_start();
 <?php
 $pageScript = ob_get_clean();
 
-include '../layout/admin.php';
+include '../layout/layout.php';
 ?>

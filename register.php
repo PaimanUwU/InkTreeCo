@@ -1,45 +1,22 @@
 <?php
-$pageTitle = "Toast/Register";
-$showTags = false;
+$pageTitle = "Register";
+$showSidebar = false;
 $showNavBar = false;
 $showFooter = false;
+$contentFlexDirection = "column";
 
 $redirect = $_GET['redirect'];
 $currentPage = $_GET['currentPage'];
 
-include 'php/session_Maker.php';
+if (!file_exists('session_Maker.php')) {
+    require '../session_Maker.php';
+} else {
+    require 'session_Maker.php';
+}
+
+require 'php/db_connection.php'; // Include your database connection
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirmPassword'];
-
-    if ($password === $confirmPassword) {
-        require 'php/db_connection.php';
-
-        $query = "SELECT * FROM PROFILE WHERE Profile_Email = '$email'";
-
-        $result = mysqli_query($connection, $query);
-    
-        if (mysqli_num_rows($result) > 0) {
-            echo '<script>alert("Account already exists!");</script>';
-        } else {
-            $query = "INSERT INTO PROFILE (Profile_Email, Profile_Password) VALUES (?, ?)";
-
-            $result = mysqli_prepare($connection, $query);
-            mysqli_stmt_bind_param($result, 'ss', $email, $confirmPassword);
-            mysqli_stmt_execute($result);
-    
-            echo '<script>alert("Successfully registered!");</script>'; 
-            header("Location: login.php?redirect=$redirect&currentPage=$currentPage"); 
-            exit;
-        }
-        mysqli_close($connection);
-    } else {
-        echo '<script>alert("Password and confirm password does not matched!");</script>'; 
-        header("Location: register.php?redirect=$redirect&currentPage=$currentPage"); 
-        exit;
-    }
 
 }
 
@@ -57,12 +34,6 @@ ob_start();
 ?>
 <!------------------------------------------Content------------------------------------------>
 <div class="container">
-    <div class="containerSide">
-        <div class="logoContainer">
-            <img class="logoBackground" src="assets/images/Breakfast Foods.png" alt="logo">
-            <img class="logoSimplified" src="assets/images/Toast Logo.png" alt="logo">
-        </div>
-    </div>
     <form action="register.php?redirect=<?php echo $redirect; ?>&currentPage=<?php echo $currentPage; ?>" method="post">
         <div class="formContainer">
             <div class="formInnerContaier">
@@ -99,5 +70,5 @@ ob_start();
 <?php
 $pageScript = ob_get_clean();
 
-include 'layout/Layout.php';
+include 'layout/layout.php';
 ?>

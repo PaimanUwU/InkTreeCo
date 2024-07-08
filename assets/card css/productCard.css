@@ -1,0 +1,74 @@
+.productCardContainer {
+    display: flex;
+    background-color: white;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    padding: 0.5em 0.5em;
+    border-radius: 1em;
+    gap: 1em;
+}
+
+.productLeft {
+    position: relative;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.productLeft img {
+    aspect-ratio: 1;
+    width: 25em;
+    height: auto;
+    object-fit: cover;
+    border-radius: calc(1em - 0.5em);
+}
+
+.productRight {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.productDetail {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1em;
+}
+
+.productAction {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 0.5em;
+}
+
+.button {
+    border-radius: calc(1em - 0.5em);
+    padding: 1em 1em;
+    display: flex;
+    align-items: center;
+}
+
+.productAddToCart {
+    background-color: #fff6b5;
+    gap: 1em;
+}
+
+.productAddToCart:hover {
+    background-color: #f0e69f;
+}
+
+.productLike {
+    background-color: #F0B6D0;
+    gap: 1em;
+}
+
+.productLike:hover {
+    background-color: #e6a2c1;
+}

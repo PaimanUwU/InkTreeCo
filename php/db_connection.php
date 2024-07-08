@@ -2,7 +2,7 @@
 $host = "localhost"; // Your host name
 $username = "root"; // Your database username
 $password = "";// Your database password
-$database = "ToastDB"; // Your database name
+$database = "InkTreeDB"; // Your database name
 
 // Create connection
 $connection = mysqli_connect($host, $username, $password, $database);

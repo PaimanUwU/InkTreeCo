@@ -1,0 +1,32 @@
+.storeNavigation {
+    display: flex;
+    flex-direction: column;
+    width: 20em;
+    height: auto;
+    padding: 1em 1em;
+}
+
+.storeNavigation a {
+    display: flex;
+    gap: 1em;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.storeNavigation a:hover {
+    background-color: rgb(243, 243, 243);
+    border-radius: 1em;
+}
+
+.storeNavigation a div {
+    border-left:2px solid #ffffff;
+}
+
+.storeNavigation a h3 {
+    padding: 1em 1em;
+    border-radius: 1em;
+    width: 100%;
+}

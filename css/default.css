@@ -4,6 +4,8 @@
     --clr-dark: #404040;
     --clr-primary: #d2e0fb;
     --clr-primary-darken: #b1c5ec;
+    --clr-accent: #D7E5CA;
+    --clr-accent2: #fff6b5;
 }
 
 * {
@@ -84,15 +86,20 @@ h3 {
     transform: translate(-50%, -50%);
 }
 
+.cartButton {
+    transition: all 0.3s ease;
+}
+
 .headerContainer{
     min-width: 5em;
+    width: 100%;
     display: flex;
     justify-content: flex-start;
 }
 
 .headerContainer h2{
     padding: 0.25em 0.5em;
-    background-color: var(--clr-primary);
+    background-color: var(--clr-accent);
     border-style: solid;
     border-width: 2px;
     border-color: #404040;
@@ -113,6 +120,7 @@ h3 {
     flex-direction: column;
     gap: 1em;
     width: 100%;
+    padding: 1em 1em;
     justify-content: flex-start;
     align-items: flex-start;
 }
@@ -201,9 +209,10 @@ h3 {
 .contents {
     width: 100%; /* Ensure content takes the full width */
     height: 100%;
+    min-height: 100vh;
     display: flex;
     margin-top: 4rem;
-    padding: 0 10em;
+    gap: 5em;
     overflow-y: hidden; /* Prevent content overflow */
 }
 
@@ -259,6 +268,11 @@ h3 {
     height: 100vh;
     width: 100vw;
     display: flex;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto auto;
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -477,10 +491,124 @@ h3 {
     gap: 1em;
 }
 
+.profileBoxControlled {
+    display : flex;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--clr-primary);
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 1em;
+    width: 95vw;
+    height: 80vh;
+    margin: auto auto;
+    padding: 1em 1em;
+    border-radius: 1em;
+}
+
+.profileBox {
+    display: flex;
+    justify-content: center;
+    flex: 2;
+}
+
+.profileDetail {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: white;
+    flex: 5;
+    width: 100%;
+    height: 100%;
+    padding: 1em 1em;
+    gap: 3em;
+    border-radius: 1em;
+    border-color: #404040;
+    border-width: 2px;
+    border-style: dashed;
+}
+
+.profileAction {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5em;
+    flex: 1;
+}
+
+.inputField {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 5em;
+}
+
+.inputField input {
+    width: 85%;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 0.5em 2em;
+    background-color: var(--background-default);
+    font-size: 1.4em;
+}
+
+.inputField textArea {
+    width: 85%;
+    height: 10em;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 0.5em 2em;
+    background-color: var(--background-default);
+    font-size: 1.4em;
+    resize: none;
+}
+
+.profileDetailSubmit {
+    display: flex;
+    position: absolute;
+    align-self: flex-end;
+    justify-self: flex-end;
+    aspect-ratio: 1;
+}
+
+.button {
+    display: flex;
+    border-style: solid;
+    border-color: var(--clr-accent2);
+    border-radius: 1em;
+    padding: 1em;
+    gap: 1em;
+    background-color: var(--clr-accent2);
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.buttonFlex {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+
+}
 
 
 
 @media (max-width: 643px) {
+
 }
 
 @media (max-width: 702px) {
@@ -520,7 +648,8 @@ h3 {
     }
 
     .contents {
-        padding: 0 0;
+        padding: 0 1em;
+        flex-direction: column;
     }
 }
 
@@ -545,7 +674,7 @@ h3 {
 
 @media (max-width: 899px) {    
     .contents {
-        padding-top: 3em;
+        margin-top: 3.5em;
     }
 
     * {
@@ -594,7 +723,7 @@ h3 {
     }
 }
 
-/* Scroll animation */
+/* animation */
 .nav.scrolled {
     width: calc(100% - 15px);
     margin-top: 8px;
@@ -604,4 +733,26 @@ h3 {
 
 .sidebar.scrolled {
     margin-top: 5em;
+}
+
+.cartButton.bounce-animation {
+    /* shake animation */
+    animation: bounce 1s infinite;
+    animation-iteration-count: 1;
+}
+
+@keyframes bounce {
+    0%   { transform: scale(1,1)      translateY(0); }
+    10%  { transform: scale(1.1,.9)   translateY(0); }
+    30%  { transform: scale(.9,1.1)   translateY(-7px); }
+    50%  { transform: scale(1.05,.95) translateY(0); }
+    57%  { transform: scale(1,1)      translateY(-3px); }
+    64%  { transform: scale(1,1)      translateY(0); }
+    100% { transform: scale(1,1)      translateY(0); }
+}
+
+@keyframes inflate {
+    0%   { transform: scale(1,1)      translateY(0); }
+    50%  { transform: scale(1.55,1.55) translateY(0); }
+    100% { transform: scale(1,1)      translateY(0); }
 }

@@ -1,14 +1,18 @@
 <?php
-$pageTitle = "Toast/Login";
-$showTags = false;
+$pageTitle = "Login";
+$showSidebar = false;
 $showNavBar = false;
 $showFooter = false;
+$contentFlexDirection = "column";
 
 $redirect = $_GET['redirect'];
 $currentPage = $_GET['currentPage'];
 
-
-include 'php/session_Maker.php';
+if (!file_exists('session_Maker.php')) {
+    require '../session_Maker.php';
+} else {
+    require 'session_Maker.php';
+}
 
 require 'php/db_connection.php'; // Include your database connection
 
@@ -16,63 +20,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $accountFount = false;
-
-    // Prepare and bind
-    $query = "SELECT Profile_ID, Profile_Email, Profile_Password FROM profile WHERE Profile_Email = ?";
-    $stmt = mysqli_prepare($connection, $query);
-    mysqli_stmt_bind_param($stmt, "s", $email);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
+    $query = "SELECT * FROM customer WHERE customer_email = '$email' AND customer_password = '$password'";
+    $result = mysqli_query($connection, $query);  
 
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
-        $id = $row['Profile_ID'];
-        $stored_password = $row['Profile_Password'];
-
-        if ($password == $stored_password) { // Directly compare the passwords
-            $_SESSION["loggedin"] = true;
-            $_SESSION["id"] = $id;
-            $_SESSION["email"] = $email;
-
-            $accountFount = true;
-
-            header("Location: auth.php?redirect=$redirect&currentPage=$currentPage");
-            exit();
-        } else {
-            echo '<script>alert("Wrong password");</script>'; 
-        }
-    } 
-
-    $query = "SELECT Admin_ID, Admin_Email, Admin_Password FROM Admin WHERE Admin_Email = ?";
-    $stmt = mysqli_prepare($connection, $query);
-    mysqli_stmt_bind_param($stmt, "s", $email);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
-
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $id = $row['Addmin_ID'];
-        $stored_password = $row['Admin_Password'];
-
-        if ($password == $stored_password) { // Directly compare the passwords
-            $_SESSION["loggedin"] = true;
-            $_SESSION["id"] = $id;
-            $_SESSION["email"] = $email;
-
-            $accountFount = true;
-
-            header("Location: admin/view.php?page=dashboard");
-            exit();
-        } else {
-            echo '<script>alert("Wrong password");</script>'; 
-        }
-    }
-
-    if (!$accountFount) {
-        echo '<script>alert("Account not found");</script>'; 
+        $_SESSION['id'] = $row['CUSTOMER_ID'];
+        $_SESSION['email'] = $row['CUSTOMER_EMAIL'];
+        $_SESSION['loggedin'] = true;
+        header("Location: index.php?redirect=goback&currentPage=$currentPage");
+        exit();
+    } else {
+        echo "<script>alert('Invalid email or password.')</script>";
     }
 }
 
@@ -92,12 +51,6 @@ ob_start();
 ?>
 <!------------------------------------------Content------------------------------------------>
 <div class="container">
-    <div class="containerSide">
-        <div class="logoContainer">
-            <img class="logoBackground" src="assets/images/Breakfast Foods.png" alt="logo">
-            <img class="logoSimplified" src="assets/images/Toast Logo.png" alt="logo">
-        </div>
-    </div>
     <form action="login.php?redirect=<?php echo $redirect; ?>&currentPage=<?php echo $currentPage; ?>" method="post">
         <div class="formContainer">
             <div class="formInnerContaier">
@@ -132,5 +85,5 @@ ob_start();
 <?php
 $pageScript = ob_get_clean();
 
-include 'layout/Layout.php';
+include 'layout/layout.php';
 ?>
