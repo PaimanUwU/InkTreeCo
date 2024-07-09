@@ -8,7 +8,11 @@ $contentPadding = "10em";
 
 $currentPage = ".php";
 
-include '../php/session_Maker.php';
+if (!file_exists('session_Maker.php')) {
+    require '../session_Maker.php';
+} else {
+    require 'session_Maker.php';
+}
 
 ob_start();
 
