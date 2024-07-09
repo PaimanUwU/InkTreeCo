@@ -304,23 +304,32 @@ if (isset($_SESSION["loggedin"])) {
             alert('Added to cart');
         }
         
-        // use fetch to send a POST request to the server
-        // fetch('../php/addToCart.php?custId=<?php echo $custID; ?>', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({ id: id })
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     // update the cart count in the navbar
-        //     var cartCountElement = document.getElementById('cartCount');
-        //     cartCountElement.textContent = data.cartCount;
-        // })
-        // .catch(error => {
-        //     console.error('Error:', error);
-        // });
+        // Use fetch to send a POST request to the server
+        fetch('../php/addToCart.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: id })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Update the cart count in the navbar
+            var cartCountElement = document.getElementById('cartCount');
+            if (cartCountElement) {
+                cartCountElement.textContent = data.cartCount;
+            } else {
+                console.error('Cart count element not found');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 
         //add to cart animation
         var cartButton = document.getElementById('cartButton');
@@ -342,22 +351,29 @@ if (isset($_SESSION["loggedin"])) {
         }
 
         // use fetch to send a POST request to the server
-        // fetch('../php/likeProduct.php?custId=<?php echo $custID; ?>', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({ id: id })
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     // update the like count in the product card
-        //     var likeCountElement = document.getElementById('likeCount' + id);
-        //     likeCountElement.textContent = data.likeCount;
-        // })
-        // .catch(error => {
-        //     console.error('Error:', error);
-        // });
+        fetch('../php/likeProduct.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: id })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Update the like count in the product card
+            var likeCountElement = document.getElementById('likeCount' + id);
+            // update innerHTML with the new like count
+            likeCountElement.innerHTML = data.likeCount;
+            
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 
         //like product animation
         var likeButton = document.getElementById('likeButton' + id);
